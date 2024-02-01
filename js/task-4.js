@@ -1,22 +1,25 @@
 'use strict';
-function submitForm(event) {
+
+const form = document.querySelector('.login-form');
+
+function onCheckForm(event) {
   event.preventDefault();
 
-  const emailValue = document.forms['loginForm'].elements['email'].value.trim();
-  const passwordValue =
-    document.forms['loginForm'].elements['password'].value.trim();
+  const email = event.target.email.value.trim();
+  const password = event.target.password.value.trim();
 
-  if (emailValue === '' || passwordValue === '') {
+  if (email === '' || password === '') {
     alert('All form fields must be filled in');
     return;
   }
 
-  const formData = {
-    email: emailValue,
-    password: passwordValue,
+  const submitForm = {
+    email: `${email}`,
+    password: `${password}`,
   };
 
-  console.log(formData);
-
-  document.forms['loginForm'].reset();
+  console.log(submitForm);
+  return form.reset();
 }
+
+form.addEventListener('submit', onCheckForm);
